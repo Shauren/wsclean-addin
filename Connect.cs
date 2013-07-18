@@ -24,6 +24,12 @@ namespace WhitespaceCleaner
             _applicationObject = (DTE2)application;
             _addInInstance = (AddIn)addInInst;
             _documentEvents = _applicationObject.Events.DocumentEvents;
+            _whitespaceRegex = ":Zs+$";
+            double version;
+            if (double.TryParse(_applicationObject.Version, out version))
+                if (version >= 11.0)
+                    _whitespaceRegex = "[^\\S\\r\\n]+(?=\\r?$)";
+
             _saved = false;
 
             _documentEvents.DocumentSaved += DocumentEvents_DocumentSaved;
@@ -53,7 +59,7 @@ namespace WhitespaceCleaner
 
                     // Remove all the trailing whitespaces.
                     _applicationObject.Find.FindReplace(vsFindAction.vsFindActionReplaceAll,
-                                         "[^\\S\\r\\n]+(?=\\r?$)",
+                                         _whitespaceRegex,
                                          (int)EnvDTE.vsFindOptions.vsFindOptionsRegularExpression,
                                          String.Empty,
                                          vsFindTarget.vsFindTargetCurrentDocument, String.Empty, String.Empty,
@@ -102,6 +108,7 @@ namespace WhitespaceCleaner
         private DTE2 _applicationObject;
         private AddIn _addInInstance;
         private DocumentEvents _documentEvents;
+        private string _whitespaceRegex;
         private bool _saved;
     }
 }
