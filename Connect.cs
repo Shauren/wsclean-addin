@@ -2,6 +2,7 @@
 using EnvDTE;
 using EnvDTE80;
 using Extensibility;
+using System.Globalization;
 
 namespace WhitespaceCleaner
 {
@@ -26,7 +27,7 @@ namespace WhitespaceCleaner
             _documentEvents = _applicationObject.Events.DocumentEvents;
             _whitespaceRegex = ":Zs+$";
             double version;
-            if (double.TryParse(_applicationObject.Version, out version))
+            if (double.TryParse(_applicationObject.Version, System.Globalization.NumberStyles.Number, CultureInfo.InvariantCulture, out version))
                 if (version >= 11.0)
                     _whitespaceRegex = "[^\\S\\r\\n]+(?=\\r?$)";
 
