@@ -47,7 +47,7 @@ namespace WhitespaceCleanerExtension
         private SaveEventHandler _saveHandler;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SaveCommandPackage"/> class.          
+        /// Initializes a new instance of the <see cref="SaveCommandPackage"/> class.
         /// </summary>
         public SaveCommandPackage()
         {
