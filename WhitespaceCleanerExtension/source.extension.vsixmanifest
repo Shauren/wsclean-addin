@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="WhitespaceCleanerExtension.Krzysztof Rapacki.876ffc7a-66dc-4aa0-8c52-971819604b60" Version="1.0.1" Language="en-US" Publisher="Krzysztof Rapacki" />
+    <Identity Id="WhitespaceCleanerExtension.Krzysztof Rapacki.876ffc7a-66dc-4aa0-8c52-971819604b60" Version="1.0.2" Language="en-US" Publisher="Krzysztof Rapacki" />
     <DisplayName>WhitespaceCleanerExtension</DisplayName>
     <Description xml:space="preserve">WhitespaceCleaner Extension for Visual Studio 2015 and newer
 
@@ -20,4 +20,7 @@ This extension removes trailing whitespace when a document is saved save and con
   <Assets>
     <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
   </Assets>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[14.0,)" DisplayName="Visual Studio core editor" />
+  </Prerequisites>
 </PackageManifest>
