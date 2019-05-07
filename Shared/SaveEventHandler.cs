@@ -17,8 +17,7 @@ namespace WhitespaceCleaner.Shared
             _applicationObject = application;
             _documentEvents = _applicationObject.Events.DocumentEvents;
             _whitespaceRegex = ":Zs+$";
-            double version;
-            if (double.TryParse(_applicationObject.Version, System.Globalization.NumberStyles.Number, CultureInfo.InvariantCulture, out version))
+            if (double.TryParse(_applicationObject.Version, NumberStyles.Number, CultureInfo.InvariantCulture, out double version))
                 if (version >= 11.0)
                     _whitespaceRegex = "[^\\S\\r\\n]+(?=\\r?$)";
 
@@ -43,18 +42,18 @@ namespace WhitespaceCleaner.Shared
                         var tabSize = (short)props.Item("TabSize").Value;
 
                         _applicationObject.Find.FindReplace(vsFindAction.vsFindActionReplaceAll, "\t",
-                                             (int)EnvDTE.vsFindOptions.vsFindOptionsRegularExpression,
-                                             new String(' ', tabSize),
-                                             vsFindTarget.vsFindTargetCurrentDocument, String.Empty, String.Empty,
+                                             (int)vsFindOptions.vsFindOptionsRegularExpression,
+                                             new string(' ', tabSize),
+                                             vsFindTarget.vsFindTargetCurrentDocument, string.Empty, string.Empty,
                                              vsFindResultsLocation.vsFindResultsNone);
                     }
 
                     // Remove all the trailing whitespaces.
                     _applicationObject.Find.FindReplace(vsFindAction.vsFindActionReplaceAll,
                                          _whitespaceRegex,
-                                         (int)EnvDTE.vsFindOptions.vsFindOptionsRegularExpression,
-                                         String.Empty,
-                                         vsFindTarget.vsFindTargetCurrentDocument, String.Empty, String.Empty,
+                                         (int)vsFindOptions.vsFindOptionsRegularExpression,
+                                         string.Empty,
+                                         vsFindTarget.vsFindTargetCurrentDocument, string.Empty, string.Empty,
                                          vsFindResultsLocation.vsFindResultsNone);
 
                     _saved = true;
