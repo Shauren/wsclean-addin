@@ -4,3 +4,4 @@ packages/
 *.user
 *.suo
 *.pfx
+.vs/
