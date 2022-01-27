@@ -10,9 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)ExtensionKey.pfx" />
-    <None Include="$(MSBuildThisFileDirectory)LICENSE" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ITextReplacer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SaveCommandPackage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SaveEventHandler.cs" />
   </ItemGroup>

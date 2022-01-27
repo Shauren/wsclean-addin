@@ -7,6 +7,7 @@
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -44,10 +45,14 @@ namespace WhitespaceCleanerExtension
     [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExistsAndFullyLoaded_string, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class SaveCommandPackage : AsyncPackage
     {
+        public static SaveCommandPackage Instance { get; private set; }
+
         /// <summary>
         /// SaveCommandPackage GUID string.
         /// </summary>
         public const string PackageGuidString = "90ab0a97-fa71-411d-918e-28d82a7a9173";
+
+        public IComponentModel ComponentModel { get; private set; }
 
         private SaveEventHandler _saveHandler;
 
@@ -74,8 +79,20 @@ namespace WhitespaceCleanerExtension
 
             var dte = await GetServiceAsync(typeof(DTE)) as DTE2;
 
+            ComponentModel = GetGlobalService(typeof(SComponentModel)) as IComponentModel;
+
+            await JoinableTaskFactory.SwitchToMainThreadAsync();
+
+#if VS2022
+            var textReplacer = new WhitespaceCleanerExtension2022.TextReplacer();
+#else
+            var textReplacer = new TextReplacer(dte);
+#endif
+
             _saveHandler = new SaveEventHandler();
-            _saveHandler.OnConnection(dte);
+            _saveHandler.OnConnection(dte, textReplacer);
+
+            Instance = this;
         }
 
         #endregion

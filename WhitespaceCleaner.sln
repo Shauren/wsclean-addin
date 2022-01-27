@@ -6,8 +6,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitespaceCleanerExtension"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "Shared\Shared.shproj", "{5DBA3B95-A4E9-4CA9-8EDB-D1CD707AF7BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitespaceCleanerExtension2022", "WhitespaceCleanerExtension2022\WhitespaceCleanerExtension2022.csproj", "{2F77D666-4729-4CB5-95D7-A800BE80590F}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Shared\Shared.projitems*{2f77d666-4729-4cb5-95d7-a800be80590f}*SharedItemsImports = 4
 		Shared\Shared.projitems*{3a5eacc9-1e83-4d1c-bc07-f76eb241eb0d}*SharedItemsImports = 4
 		Shared\Shared.projitems*{5dba3b95-a4e9-4ca9-8edb-d1cd707af7bb}*SharedItemsImports = 13
 	EndGlobalSection
@@ -20,6 +23,10 @@ Global
 		{3A5EACC9-1E83-4D1C-BC07-F76EB241EB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A5EACC9-1E83-4D1C-BC07-F76EB241EB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A5EACC9-1E83-4D1C-BC07-F76EB241EB0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F77D666-4729-4CB5-95D7-A800BE80590F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F77D666-4729-4CB5-95D7-A800BE80590F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F77D666-4729-4CB5-95D7-A800BE80590F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F77D666-4729-4CB5-95D7-A800BE80590F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

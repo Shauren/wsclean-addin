@@ -1,5 +1,7 @@
 using EnvDTE;
 using EnvDTE80;
+using Microsoft.VisualStudio.Shell;
+using Shared;
 using System;
 using System.Globalization;
 
@@ -10,10 +12,13 @@ namespace WhitespaceCleaner.Shared
         private DTE2 _applicationObject;
         private DocumentEvents _documentEvents;
         private string _whitespaceRegex;
+        private ITextReplacer _textReplacer;
         private bool _saved;
 
-        public void OnConnection(DTE2 application)
+        public void OnConnection(DTE2 application, ITextReplacer textReplacer)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             _applicationObject = application;
             _documentEvents = _applicationObject.Events.DocumentEvents;
             _whitespaceRegex = ":Zs+$";
@@ -21,6 +26,7 @@ namespace WhitespaceCleaner.Shared
                 if (version >= 11.0)
                     _whitespaceRegex = "[^\\S\\r\\n]+(?=\\r?$)";
 
+            _textReplacer = textReplacer;
             _saved = false;
 
             _documentEvents.DocumentSaved += DocumentEvents_DocumentSaved;
@@ -28,6 +34,8 @@ namespace WhitespaceCleaner.Shared
 
         private void DocumentEvents_DocumentSaved(Document document)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (!_saved)
             {
                 try
@@ -41,20 +49,11 @@ namespace WhitespaceCleaner.Shared
                     {
                         var tabSize = (short)props.Item("TabSize").Value;
 
-                        _applicationObject.Find.FindReplace(vsFindAction.vsFindActionReplaceAll, "\t",
-                                             (int)vsFindOptions.vsFindOptionsRegularExpression,
-                                             new string(' ', tabSize),
-                                             vsFindTarget.vsFindTargetCurrentDocument, string.Empty, string.Empty,
-                                             vsFindResultsLocation.vsFindResultsNone);
+                        _textReplacer.Replace("\t", new string(' ', tabSize), document);
                     }
 
                     // Remove all the trailing whitespaces.
-                    _applicationObject.Find.FindReplace(vsFindAction.vsFindActionReplaceAll,
-                                         _whitespaceRegex,
-                                         (int)vsFindOptions.vsFindOptionsRegularExpression,
-                                         string.Empty,
-                                         vsFindTarget.vsFindTargetCurrentDocument, string.Empty, string.Empty,
-                                         vsFindResultsLocation.vsFindResultsNone);
+                    _textReplacer.Replace(_whitespaceRegex, string.Empty, document);
 
                     _saved = true;
                     document.Save();
