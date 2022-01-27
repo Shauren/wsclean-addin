@@ -2,8 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitespaceCleaner", "WhitespaceCleaner.csproj", "{54C786E5-FD14-4036-92AE-E9F25B71534B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitespaceCleanerExtension", "WhitespaceCleanerExtension\WhitespaceCleanerExtension.csproj", "{3A5EACC9-1E83-4D1C-BC07-F76EB241EB0D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{25B65718-14C0-4A62-8884-3C61DE51F9D9}"
@@ -14,10 +12,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{54C786E5-FD14-4036-92AE-E9F25B71534B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54C786E5-FD14-4036-92AE-E9F25B71534B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54C786E5-FD14-4036-92AE-E9F25B71534B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54C786E5-FD14-4036-92AE-E9F25B71534B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A5EACC9-1E83-4D1C-BC07-F76EB241EB0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A5EACC9-1E83-4D1C-BC07-F76EB241EB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A5EACC9-1E83-4D1C-BC07-F76EB241EB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
